@@ -1,2 +1,2 @@
 # SurvivalShooter
-#Script #Unity #Game #MonoDevelop
+#ScriptOnly #Unity #Game #MonoDevelop
