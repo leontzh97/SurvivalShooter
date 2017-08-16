@@ -3,12 +3,15 @@
 public class PlayerMovement : MonoBehaviour
 {
 	public float speed = 6f;            // The speed that the player will move at.
+	public bool slowdown;
+	public float slowDuration;
 
 	Vector3 movement;                   // The vector to store the direction of the player's movement.
 	Animator anim;                      // Reference to the animator component.
 	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 	int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 	float camRayLength = 100f;          // The length of the ray from the camera into the scene.
+	float timeElapsed;
 
 	void Awake ()
 	{
@@ -18,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 		// Set up references.
 		anim = GetComponent <Animator> ();
 		playerRigidbody = GetComponent <Rigidbody> ();
+		slowdown = false;
 	}
 
 
@@ -35,6 +39,15 @@ public class PlayerMovement : MonoBehaviour
 
 		// Animate the player.
 		Animating (h, v);
+
+		if (slowdown == true) {
+			timeElapsed += Time.deltaTime;
+
+			if (timeElapsed > slowDuration) {
+				Time.timeScale = 1f;
+				timeElapsed = 0f;
+			}
+		}
 	}
 
 	void Move (float h, float v)
