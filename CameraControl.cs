@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour {
 
 	public Transform target;
-	public float smoothing = 5f;
+	public float smoothing = 5f;  // To smooth the movement of camera
 
 	Vector3 offset;
 	// Use this for initialization
